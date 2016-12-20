@@ -1,0 +1,33 @@
+#!/bin/bash
+clear
+#_________________________
+# 1 - Imports
+#_________________________
+source ./registry.conf
+
+#_________________________
+# 2 - Pre-checks
+#_________________________
+#test =$(which docker)
+
+#_________________________
+# 3 - Parameters
+#_________________________
+me=$(basename $0)
+image_name="mesos-dns"
+image_tag="generic"
+#_________________________
+# 4 - Algo
+#_________________________
+tagged_image="$image_name:$image_tag"
+# repository
+repo="$registry_adress/$tagged_image"
+cd ./mesos/dns
+docker build -t $tagged_image   .
+docker tag      $tagged_image   $repo
+docker push                     $repo
+
+#_________________________
+# 5 - Post checks
+#_________________________
+#test =$(which docker)
