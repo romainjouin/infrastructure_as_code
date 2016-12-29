@@ -11,5 +11,6 @@ do
         ip_machine=${ips[$n]}
         link=" $ip_machine $nom_machine"
         echo -e "$link" >> /etc/hosts
+	echo "[ $link ]  added to /etc/hosts (not tested)"
 done
 
