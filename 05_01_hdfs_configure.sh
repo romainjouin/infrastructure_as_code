@@ -9,7 +9,7 @@ cat <<EOF >$hadoop_home/etc/hadoop/core-site.xml
 <configuration>
 <property>
  <name>fs.default.name</name>
-<value>hdfs://$ip_master:$hadoop_port_master_hadoop</value>
+<value>hdfs://$hadoop_master_url:$hadoop_master_port</value>
 </property>
 <property>
    <name>hadoop.proxyuser.httpfs.hosts</name>
@@ -29,8 +29,8 @@ cat <<EOF >$hadoop_home/etc/hadoop/core-site.xml
 </property>
 </configuration>
 EOF
-mkdir -p $hadoop_home/hdfs-data/dn
-mkdir -p $hadoop_home/hdfs-data/nn
+mkdir -p $hadoop_datadir_dn
+mkdir -p $hadoop_datadir_nn
 rm       $hadoop_home/etc/hadoop/hdfs-site.xml 
 cat <<hdfs-site >$hadoop_home/etc/hadoop/hdfs-site.xml 
 <?xml version="1.0"?>
@@ -39,12 +39,12 @@ cat <<hdfs-site >$hadoop_home/etc/hadoop/hdfs-site.xml
 
 <property>
 <name>dfs.namenode.name.dir</name>
-<value>file://$hadoop_home/hdfs-data/nn</value>
+<value>file://$hadoop_datadir_nn</value>
 </property>
 
 <property>
 <name>dfs.datanode.data.dir</name>
-<value>file://$hadoop_home/hdfs-data/dn</value>
+<value>file://$hadoop_datadir_dn</value>
 </property>
 
 <property>
