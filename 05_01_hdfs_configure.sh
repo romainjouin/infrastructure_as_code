@@ -61,13 +61,17 @@ cat <<hdfs-site >$hadoop_home/etc/hadoop/hdfs-site.xml
 hdfs-site
 
 
-
-cat <<hadoop-env >$hadoop_home/etc/hadoop/hadoop-env.sh
-
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-
-
+if [[ "$os" == "mac" ]]
+then 
+	cat <<hadoop-env >$hadoop_home/etc/hadoop/hadoop-env.sh
+	export JAVA_HOME=/usr
 hadoop-env
+else
+
+	cat <<hadoop-env >$hadoop_home/etc/hadoop/hadoop-env.sh
+	export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+hadoop-env
+fi
 
 
 EOC
