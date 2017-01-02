@@ -15,7 +15,7 @@ fi
 
 mkdir -p  "$(dirname $hadoop_home)"
 cd        $download_dir
-#curl -O   $hadoop_tgz_url
-#tar -xvf  $hadoop_tgz
+curl -O   $hadoop_tgz_url
+tar -xvf  $hadoop_tgz
 mv $hadoop_uncompressed $hadoop_home
 echo  $hadoop_uncompressed $hadoop_home
