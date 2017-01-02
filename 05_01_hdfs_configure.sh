@@ -1,21 +1,15 @@
 #!/bin/bash
-source reseau.sh
-hadoop_dir="~/Informatique/hadoop"
-url=http://mirrors.ircam.fr/pub/apache/hadoop/common/hadoop-2.6.4/hadoop-2.6.4.tar.gz
-nom_tar=$(basename $url)
-n=-1
-version_hadoop=${nom_tar:0:$(expr ${#nom_tar} - 7)}
-echo $nom_tar
-echo $version_hadoop
+source 00_00_conf_variables.conf 
+
 ssh $1 /bin/bash <<EOC
-rm $hadoop_dir/$version_hadoop/etc/hadoop/core-site.xml
-cat <<EOF >$hadoop_dir/$version_hadoop/etc/hadoop/core-site.xml
+rm $hadoop_home/etc/hadoop/core-site.xml
+cat <<EOF >$hadoop_home/etc/hadoop/core-site.xml
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
 <property>
  <name>fs.default.name</name>
-<value>hdfs://$ip_master:$port_master_hadoop</value>
+<value>hdfs://$ip_master:$hadoop_port_master_hadoop</value>
 </property>
 <property>
    <name>hadoop.proxyuser.httpfs.hosts</name>
@@ -35,22 +29,22 @@ cat <<EOF >$hadoop_dir/$version_hadoop/etc/hadoop/core-site.xml
 </property>
 </configuration>
 EOF
-mkdir -p  $hadoop_dir/$version_hadoop/hdfs-data/dn
-mkdir -p $hadoop_dir/$version_hadoop_dir/hdfs-data/nn
-#rm $hadoop_dir/$version_hadoop/etc/hadoop/hdfs-site.xml 
-cat <<hdfs-site >$hadoop_dir/$version_hadoop/etc/hadoop/hdfs-site.xml 
+mkdir -p $hadoop_home/hdfs-data/dn
+mkdir -p $hadoop_home/hdfs-data/nn
+rm       $hadoop_home/etc/hadoop/hdfs-site.xml 
+cat <<hdfs-site >$hadoop_home/etc/hadoop/hdfs-site.xml 
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
 
 <property>
 <name>dfs.namenode.name.dir</name>
-<value>file:///home/romain/Informatique/hadoop/hdfs-data/nn</value>
+<value>file://$hadoop_home/hdfs-data/nn</value>
 </property>
 
 <property>
 <name>dfs.datanode.data.dir</name>
-<value>file://home/romain/Informatique/hadoop/hdfs-data/dn</value>
+<value>file://$hadoop_home/hdfs-data/dn</value>
 </property>
 
 <property>
@@ -68,7 +62,7 @@ hdfs-site
 
 
 
-cat <<hadoop-env >$hadoop_dir/$version_hadoop/etc/hadoop/hadoop-env.sh
+cat <<hadoop-env >$hadoop_home/etc/hadoop/hadoop-env.sh
 
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
