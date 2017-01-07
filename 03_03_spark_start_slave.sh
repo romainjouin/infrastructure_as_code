@@ -1,11 +1,11 @@
 #!/bin/bash
-slave=$1
-ip_master=$2
-if [[ $# -ne 2 ]]
+source 00_00_conf_variables.conf
+if [[ "$#" -ne 2 ]]
 then
-	echo "Il faut deux arguments : (1 = ip du slave, 2 =  ip du maître"
+	echo " Nombre de paramètres incorrect"
+	echo "Parameters : 1 = ip_slave  , 2 =  ip_master" 
 else
-
-	echo "ssh  $slave "$spark_home/sbin/start-slave.sh spark://$ip_master:7077""
-	ssh  $slave "$spark_home/sbin/start-slave.sh spark://$ip_master:7077"
+	slave=$1
+	ip_master=$2
+	ssh  $slave "~/$spark_home/sbin/start-slave.sh spark://$ip_master:7077"
 fi
