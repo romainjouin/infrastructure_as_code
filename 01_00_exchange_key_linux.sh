@@ -8,7 +8,7 @@ else
 	ssh-keygen -t rsa -f ~/.ssh/id_rsa
 
 	# 2) send the key to the distant server
-	cat ~/.ssh/id_rsa.pub | ssh $1 "cat - >> ~/.ssh/authorized_keys"
+	ssh-copy-id $1
 
 	# 3) create an agent on your bashrc
 	echo '
@@ -38,5 +38,6 @@ else
 	# 5) tell the agent wich secret he should know to become a secret agent.
 	ssh-add ~/.ssh/id_rsa
 	# 6) enjoy a free connection to the distant host
-	ssh $1
+  echo "Key added to remote server, and now you can simply go like ssh user@host and log without password required"
+  #ssh $1
 fi
