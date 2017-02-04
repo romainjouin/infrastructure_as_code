@@ -13,7 +13,8 @@ En d'autres terme, deployer une connection entre deux noeuds à l'aide de Spark.
 
 ![spark](spark.png)
 
-
+# 0) Connection au serveur
+    $ ssh user@host
 # 1) Creer un user sudo sur les deux serveurs qu'on veux connecter
 ### noter qu'il est nécessaire de réaliser les points 1 à 4 sur les deux instances (les deux serveurs) .
 
