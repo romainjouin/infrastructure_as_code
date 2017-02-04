@@ -24,11 +24,15 @@ En d'autres terme, deployer une connection entre deux noeuds à l'aide de Spark.
 
     $ infrastructure_as_code/ ./01_00_exchange_keys_linux.sh user@host
     $
-    $ #le script check s'il existe une clé déjà une clé ssh pour votre profil "user", si oui, le programme demande un "overwrite", qui n'est pas nécessaire.
-    $ #sinon, le script va simplement generer une "clé" ssid , qui va ensuite être transmise au serveur distant ( @host ), ainsi qu'un script qui implemente
-    $
-    $ #un agent ssh Un agent SSH stocke en mémoire les clés privées utilisées lors de l'authentification par clef publique (RSA, DSA, ECDSA)
-    $ #L'utilisation d'un agent, évite donc d'avoir à retaper la phrase secrète à chaque fois que l'on sollicite l'utilisation de la clé privée.
+    $ # INFORMATIONS ! INFORMATIONS ! INFORMATIONS !
+    $ #le script check s'il existe une clé déjà une clé ssh pour votre profil "user",
+    $ #si oui, le programme demande un "overwrite", qui n'est pas nécessaire.
+    $ #sinon, le script va simplement generer une "clé" ssid , qui va ensuite être
+    $ #transmise au serveur distant ( @host ), ainsi qu'un script qui implemente
+    $ #un agent ssh Un agent SSH stocke en mémoire les clés privées utilisées lors de
+    $ #l'authentification par clef publique (RSA, DSA, ECDSA)
+    $ #L'utilisation d'un agent, évite donc d'avoir à retaper la phrase secrète à
+    $ #chaque fois que l'on sollicite l'utilisation de la clé privée.
     $
     $ #merci wikipedia
 
@@ -45,7 +49,8 @@ En d'autres terme, deployer une connection entre deux noeuds à l'aide de Spark.
     $ java -version
     $
     $ # le terminal devrait vous renvoyer la version de JAVA que vous venez d'installer
-    $ # il faut maintenant déclarer la variable $HOME dans notre environnement de variables linux, pour permettre à spark de lancer sa machine virtuelle dans l'environnement java
+    $ # il faut maintenant déclarer la variable $HOME dans notre environnement de variables linux,
+    $ # pour permettre à spark de lancer sa machine virtuelle dans l'environnement java
     $
     $ export JAVA_HOME=/usr/lib/jvm/java-8-oracle
     $
@@ -72,7 +77,7 @@ En d'autres terme, deployer une connection entre deux noeuds à l'aide de Spark.
 
   ### SERVEUR 2
 
-    $# Lancement du worker
+    $ #Lancement du worker
     $ #toujours faire attention à être dans le dossier spark
     $ cd spark-2.1.0-bin-hadoop2.7.tgz
     $ sbin/start-slave.sh spark://yourIPadresse:7077
