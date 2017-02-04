@@ -23,7 +23,7 @@ En d'autres terme, deployer une connection entre deux noeuds à l'aide de Spark.
 
 # 2) Echanger les clé ssh
 
-    $ infrastructure_as_code/ ./01_00_exchange_keys_linux.sh user@host
+    $ infrastructure_as_code/ ./01_00_exchange_keys_linux.sh spark@host
     $
     $ # INFORMATIONS ! INFORMATIONS ! INFORMATIONS !
     $ #le script check s'il existe une clé déjà une clé ssh pour votre profil "user",
