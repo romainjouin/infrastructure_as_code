@@ -1,9 +1,7 @@
-
+source 00_00_conf_reseau.conf
+destination=$(whoami)@$ip_master
+echo $destination
 #exchange_key.sh
-if [ $# -eq 0 ]
-  then
-    echo "You must supply the distant account and computer : account@ip as 1st paramter"
-else
 	# 1) create a key
 	if [ -e ~/.ssh/id_rsa ]; then
 		echo 'Key exist, reusing.'
@@ -11,7 +9,8 @@ else
 		ssh-keygen -t rsa -f ~/.ssh/id_rsa
 	fi
 	# 2) send the key to the distant server
-	cat ~/.ssh/id_rsa.pub | ssh $1 "cat - >> ~/.ssh/authorized_keys"
+	ssh $destination
+	cat ~/.ssh/id_rsa.pub | ssh  $destination "cat - >> ~/.ssh/authorized_keys"
 
 	# 3) create an agent on your bashrc
 	echo '
@@ -41,5 +40,4 @@ else
 	# 5) tell the agent wich secret he should know to become a secret agent.
 	ssh-add ~/.ssh/id_rsa
 	# 6) enjoy a free connection to the distant host
-	ssh $1
-fi
+	ssh $destination
