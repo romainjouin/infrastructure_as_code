@@ -18,11 +18,12 @@ fi
 
 mkdir -p  "$(dirname $hadoop_home)"
 cd        $download_dir
-#curl -O   $hadoop_tgz_url
-#tar -xvf  $hadoop_tgz
+echo "$hadoop_tgz_url"
+curl -O   $hadoop_tgz_url
+tar -xvf  $hadoop_tgz
 if [[ "$os" == "mac" ]] 
 then
 	rm -rf $hadoop_home
 fi
 echo  "[ $hadoop_uncompressed - $hadoop_home ]"
-mv $hadoop_uncompressed $hadoop_home
+mv       $hadoop_uncompressed $hadoop_home
