@@ -1,7 +1,7 @@
-if [ -d ~/anaconda3/z ] ; then
+if [ -d ~/anaconda3/ ] ; then
 	echo "anaconda3 seems to be already installed"
 else
-echo "doesn't exist"
+echo "~/anaconda3/ doesn't exist"
 url=https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
 delimiter="\/"
 echo "going to install $url"
